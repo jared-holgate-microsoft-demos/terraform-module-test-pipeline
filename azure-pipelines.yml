@@ -21,7 +21,7 @@ steps:
   workingDirectory: terraform-module-test-module
 
 - pwsh: |
-    $repository = $(Build.Repository.Uri)
+    $repository = "$(Build.Repository.Uri)""
     $organisation = $repository -replace '/[^/]+$'
     $token = git config --get http.$(Build.Repository.Uri).extraheader
     git config http.$organisation.extraheader $token
