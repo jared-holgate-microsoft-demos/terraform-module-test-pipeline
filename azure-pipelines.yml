@@ -16,11 +16,11 @@ steps:
 - checkout: Module
   persistCredentials: true
   
-- script: git config --list
+- script: git config --list --show-origin
   displayName: 'Get Config Module'
   workingDirectory: terraform-module-test-module
 
-- script: git config --list
+- script: git config --list --show-origin
   displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-module
 
