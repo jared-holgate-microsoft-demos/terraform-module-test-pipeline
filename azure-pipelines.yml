@@ -1,3 +1,6 @@
+trigger:
+- main
+
 resources:
   repositories:
     - repository: Module
@@ -5,52 +8,53 @@ resources:
       endpoint: jared-holgate-microsoft-demos
       name: jared-holgate-microsoft-demos/terraform-module-test-module
 
-trigger:
-- main
+stages:
+- stage: A
 
-pool: Default
-
-workspace:
-  clean: all
-
-steps:
-- checkout: self
-  persistCredentials: true
-
-- checkout: Module
-  persistCredentials: true
-  
-- pwsh: |
-    $repository = "$(Build.Repository.Uri)"
-    $organisation = $repository -replace '/[^/]+$'
+  jobs:
+  - job: A
+    pool: Default
     
-    $token = git config --get http.https://github.com/jared-holgate-microsoft-demos/terraform-module-test-module.extraheader
+    workspace:
+      clean: all
+    steps:
+    - checkout: self
+      persistCredentials: true
 
-    # git config --global http.https://github.com.extraheader $token
-    git config -f .gitconfig http.https://github.com.extraheader $token
-    type .gitconfig
-  displayName: 'Get Config Pipeline'
-  workingDirectory: terraform-module-test-module
+    - checkout: Module
+      persistCredentials: true
+      
+    - pwsh: |
+        $repository = "$(Build.Repository.Uri)"
+        $organisation = $repository -replace '/[^/]+$'
+        
+        $token = git config --get http.https://github.com/jared-holgate-microsoft-demos/terraform-module-test-module.extraheader
 
-- pwsh: |
-    $repository = "$(Build.Repository.Uri)"
-    $organisation = $repository -replace '/[^/]+$'
-    
-    $token = git config --get http.$repository.extraheader
+        # git config --global http.https://github.com.extraheader $token
+        git config -f .gitconfig http.https://github.com.extraheader $token
+        type .gitconfig
+      displayName: 'Get Config Pipeline'
+      workingDirectory: terraform-module-test-module
 
-    git config --global http.https://github.com.extraheader $token
-    git config -f .gitconfig http.https://github.com.extraheader $token
-    type .gitconfig
-  displayName: 'Get Config Pipeline'
-  workingDirectory: terraform-module-test-pipeline
+    - pwsh: |
+        $repository = "$(Build.Repository.Uri)"
+        $organisation = $repository -replace '/[^/]+$'
+        
+        $token = git config --get http.$repository.extraheader
 
-- script: |
-    terraform init
-  displayName: 'Terraform Init'
-  workingDirectory: terraform-module-test-pipeline
-  env:
-    TF_LOG: TRACE
+        git config --global http.https://github.com.extraheader $token
+        git config -f .gitconfig http.https://github.com.extraheader $token
+        type .gitconfig
+      displayName: 'Get Config Pipeline'
+      workingDirectory: terraform-module-test-pipeline
 
-- script: terraform apply -auto-approve
-  displayName: 'Terrafrom Apply'
-  workingDirectory: terraform-module-test-pipeline
+    - script: |
+        terraform init
+      displayName: 'Terraform Init'
+      workingDirectory: terraform-module-test-pipeline
+      env:
+        TF_LOG: TRACE
+
+    - script: terraform apply -auto-approve
+      displayName: 'Terrafrom Apply'
+      workingDirectory: terraform-module-test-pipeline
