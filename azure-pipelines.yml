@@ -23,7 +23,7 @@ steps:
 - script: |
     git config --list --show-origin
     echo $(Build.Repository.Uri)
-    git config --get http.$(Build.Repository.Uri).extraheader 
+    git config --get http.$(Build.Repository.Uri).extraheader
   displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-module
 
