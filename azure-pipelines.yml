@@ -17,6 +17,11 @@ steps:
   persistCredentials: true
   
 - script: git config --list
+  displayName: 'Get Config Module'
+  workingDirectory: terraform-module-test-module
+
+- script: git config --list
+  displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-module
 
 - script: terraform init
