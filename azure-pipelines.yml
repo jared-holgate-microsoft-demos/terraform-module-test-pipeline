@@ -16,21 +16,21 @@ workspace:
 steps:
 - checkout: self
   persistCredentials: true
-  path: s/terraform-module-test-pipeline
-#- checkout: Module
-#  persistCredentials: true
+
+- checkout: Module
+  persistCredentials: true
   
-#- pwsh: |
-#    $repository = "$(Build.Repository.Uri)"
-#    $organisation = $repository -replace '/[^/]+$'
-#    
-#    $token = git config --get http.https://github.com/jared-holgate-microsoft-demos/terraform-module-test-module.extraheader
-#
-#    # git config --global http.https://github.com.extraheader $token
-#    git config -f .gitconfig http.https://github.com.extraheader $token
-#    type .gitconfig
-#  displayName: 'Get Config Pipeline'
-#  workingDirectory: terraform-module-test-module
+- pwsh: |
+    $repository = "$(Build.Repository.Uri)"
+    $organisation = $repository -replace '/[^/]+$'
+    
+    $token = git config --get http.https://github.com/jared-holgate-microsoft-demos/terraform-module-test-module.extraheader
+
+    # git config --global http.https://github.com.extraheader $token
+    git config -f .gitconfig http.https://github.com.extraheader $token
+    type .gitconfig
+  displayName: 'Get Config Pipeline'
+  workingDirectory: terraform-module-test-module
 
 - pwsh: |
     $repository = "$(Build.Repository.Uri)"
@@ -42,15 +42,15 @@ steps:
     git config -f .gitconfig http.https://github.com.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
-  #workingDirectory: terraform-module-test-pipeline
+  workingDirectory: terraform-module-test-pipeline
 
 - script: |
     terraform init
   displayName: 'Terraform Init'
-  #workingDirectory: terraform-module-test-pipeline
+  workingDirectory: terraform-module-test-pipeline
   env:
     TF_LOG: TRACE
 
 - script: terraform apply -auto-approve
   displayName: 'Terrafrom Apply'
-  #workingDirectory: terraform-module-test-pipeline
+  workingDirectory: terraform-module-test-pipeline
