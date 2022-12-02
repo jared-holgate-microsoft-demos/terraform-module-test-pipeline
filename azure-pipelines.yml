@@ -16,6 +16,8 @@ steps:
 
 - script: terraform init
   displayName: 'Terraform Init'
+  workingDirectory: terraform-module-test-pipeline
 
 - script: terraform apply -auto-approve
   displayName: 'Terrafrom Apply'
+  workingDirectory: terraform-module-test-pipeline
