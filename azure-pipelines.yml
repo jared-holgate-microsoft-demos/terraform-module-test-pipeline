@@ -34,9 +34,12 @@ steps:
   displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-pipeline
 
-- script: terraform init
+- script: |
+    terraform init
   displayName: 'Terraform Init'
   workingDirectory: terraform-module-test-pipeline
+  env:
+    TF_LOG: TRACE
 
 - script: terraform apply -auto-approve
   displayName: 'Terrafrom Apply'
