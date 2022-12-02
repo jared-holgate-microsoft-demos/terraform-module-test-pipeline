@@ -27,12 +27,12 @@ steps:
     $repository = "$(Build.Repository.Uri)"
     $organisation = $repository -replace '/[^/]+$'
     
-    $token = git config --get http.https://github.com/jared-holgate-microsoft-demos/terraform-module-test-module.extraheader
-    git config --global http.https://github.com/.extraheader $token
-    git config -f .gitconfig http.https://github.com/.extraheader $token
+    $token = git config --get http.$organisation.extraheader
+
+    git config -f .gitconfig http.https://github.com.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
-  workingDirectory: terraform-module-test-module
+  workingDirectory: terraform-module-test-pipeline
 
 - script: |
     terraform init
