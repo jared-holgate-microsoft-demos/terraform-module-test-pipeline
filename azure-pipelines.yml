@@ -23,8 +23,8 @@ steps:
     
     $token = git config --get http.$repository.extraheader
 
-    git config --global http.$organisation.extraheader $token
-    git config -f .gitconfig http.$organisation.extraheader $token
+    # git config --global http.https://github.com.extraheader $token
+    git config -f .gitconfig http.https://github.com.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
 
