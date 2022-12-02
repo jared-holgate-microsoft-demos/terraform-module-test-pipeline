@@ -16,7 +16,7 @@ workspace:
 steps:
 - checkout: self
   persistCredentials: true
-  path: terraform-module-test-pipeline
+  path: s/terraform-module-test-pipeline
 #- checkout: Module
 #  persistCredentials: true
   
