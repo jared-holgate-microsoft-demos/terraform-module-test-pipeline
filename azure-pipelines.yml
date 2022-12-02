@@ -25,7 +25,7 @@ steps:
 
     git config --global http.https://github.com.extraheader $token
     # git config -f .gitconfig http.https://github.com.extraheader $token
-    type .gitconfig
+    # type .gitconfig
   displayName: 'Get Config Pipeline'
 
 - script: |
