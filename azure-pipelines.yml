@@ -17,6 +17,7 @@ steps:
   persistCredentials: true
   
 - script: git config --list
+  workingDirectory: terraform-module-test-module
 
 - script: terraform init
   displayName: 'Terraform Init'
