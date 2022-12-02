@@ -22,7 +22,7 @@ steps:
 
 - script: |
     git config --list --show-origin
-    git config --get-urlmatch http https://dev.azure.com
+    git config --get-urlmatch http https://github.com
   displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-module
 
