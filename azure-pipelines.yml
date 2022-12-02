@@ -20,11 +20,12 @@ steps:
   displayName: 'Get Config Module'
   workingDirectory: terraform-module-test-module
 
-- script: |
-    git config --list --show-origin
-    echo $(Build.Repository.Uri)
+- pwsh: |
+    $repository = $(Build.Repository.Uri)
+    $organisation = $repository -replace '/[^/]+$'
+    $token = git config --get http.$(Build.Repository.Uri).extraheader
+    git config http.$organisation.extraheader $token
     type .git\config
-    git config --get http.$(Build.Repository.Uri).extraheader
   displayName: 'Get Config Pipeline'
   workingDirectory: terraform-module-test-pipeline
 
