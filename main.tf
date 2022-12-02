@@ -1,5 +1,5 @@
 module "test" {
-  source = "github.com/jared-holgate-microsoft-demos/terrafrom-module-test-module" 
+  source = "github.com/jared-holgate-microsoft-demos/terraform-module-test-module" 
 }
 
 output "pet_name" {
