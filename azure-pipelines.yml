@@ -15,6 +15,8 @@ steps:
   persistCredentials: true
 - checkout: Module
   persistCredentials: true
+  
+- script: git config --list
 
 - script: terraform init
   displayName: 'Terraform Init'
