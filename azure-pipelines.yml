@@ -32,7 +32,7 @@ steps:
     git config -f .gitconfig http.https://github.com.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
-  workingDirectory: terraform-module-test-pipeline
+  workingDirectory: terraform-module-test-module
 
 - script: |
     terraform init
