@@ -26,8 +26,9 @@ steps:
 - pwsh: |
     $repository = "$(Build.Repository.Uri)"
     $organisation = $repository -replace '/[^/]+$'
+    
     $token = git config --get http.$(Build.Repository.Uri).extraheader
-    git config --global http.$organisation.extraheader $token
+    git config --global http.https://github.com.extraheader $token
     git config -f .gitconfig http.$organisation.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
