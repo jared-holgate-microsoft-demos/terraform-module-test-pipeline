@@ -13,8 +13,10 @@ pool: Default
 steps:
 - checkout: self
   persistCredentials: true
+  clean: true
 - checkout: Module
   persistCredentials: true
+  clean: true
   
 - script: git config --list --show-origin
   displayName: 'Get Config Module'
