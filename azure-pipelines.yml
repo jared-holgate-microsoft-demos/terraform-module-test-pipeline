@@ -42,15 +42,15 @@ steps:
     git config -f .gitconfig http.https://github.com.extraheader $token
     type .gitconfig
   displayName: 'Get Config Pipeline'
-  workingDirectory: terraform-module-test-pipeline
+  #workingDirectory: terraform-module-test-pipeline
 
 - script: |
     terraform init
   displayName: 'Terraform Init'
-  workingDirectory: terraform-module-test-pipeline
+  #workingDirectory: terraform-module-test-pipeline
   env:
     TF_LOG: TRACE
 
 - script: terraform apply -auto-approve
   displayName: 'Terrafrom Apply'
-  workingDirectory: terraform-module-test-pipeline
+  #workingDirectory: terraform-module-test-pipeline
