@@ -12,7 +12,9 @@ pool: Default
 
 steps:
 - checkout: self
+  persistCredentials: true
 - checkout: Module
+  persistCredentials: true
 
 - script: terraform init
   displayName: 'Terraform Init'
