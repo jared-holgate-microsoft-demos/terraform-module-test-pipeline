@@ -8,8 +8,7 @@ resources:
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool: Default
 
 steps:
 - checkout: self
