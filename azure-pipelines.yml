@@ -3,21 +3,20 @@ trigger:
 
 resources:
   repositories:
-    - repository: terraform_module
+    - repository: terraform_module #This is the name you will reference in the checkout step
       type: github
-      endpoint: jared-holgate-microsoft-demos
-      name: jared-holgate-microsoft-demos/terraform-module-test-module
+      endpoint: jared-holgate-microsoft-demos #This is the name of the Service Connection (see: https://learn.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#define-a-repositories-resource)
+      name: jared-holgate-microsoft-demos/terraform-module-test-module #This is the name of the repo with the org specified
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
 - checkout: self
-  persistCredentials: true
+  persistCredentials: true #This is required to keep the github git token in the config
   path: s
 
 - checkout: terraform_module
-  persistCredentials: true
   path: temp/module
 
 - pwsh: |
