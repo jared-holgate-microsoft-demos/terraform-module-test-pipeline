@@ -8,7 +8,8 @@ resources:
       endpoint: jared-holgate-microsoft-demos
       name: jared-holgate-microsoft-demos/terraform-module-test-module
 
-pool: Default
+pool:
+  vmImage: ubuntu-latest
 
 workspace:
   clean: all
