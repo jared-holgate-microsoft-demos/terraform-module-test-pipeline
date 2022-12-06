@@ -16,6 +16,7 @@ workspace:
 steps:
 - checkout: self
   persistCredentials: true
+  path: s
 
 - checkout: Module
   persistCredentials: true
