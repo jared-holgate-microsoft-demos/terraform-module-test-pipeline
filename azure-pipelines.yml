@@ -20,8 +20,8 @@ steps:
     New-Item -Path . -Name "terraform-module-test-module" -ItemType Directory -Force #This is here to remove an annoying warning message.
   displayName: 'Setup temp folder'
   
-- checkout: terraform_module #The module name as declared in the resources section above.
-  path: temp/module #Tell it to checkout into a temp location as we don't actually need to use the module code.
+#- checkout: terraform_module #The module name as declared in the resources section above.
+#  path: temp/module #Tell it to checkout into a temp location as we don't actually need to use the module code.
 
 - pwsh: |
     $token = git config --get http.$(Build.Repository.Uri).extraheader #Get the token from the .git/config file.
