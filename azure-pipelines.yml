@@ -17,8 +17,9 @@ steps:
 - checkout: self
   persistCredentials: true
 
-#- checkout: Module
-#  persistCredentials: true
+- checkout: Module
+  persistCredentials: true
+  path: temp/module
 
 - pwsh: |
     $repository = "$(Build.Repository.Uri)"
@@ -28,14 +29,14 @@ steps:
 
     git config --global http.https://github.com.extraheader $token
   displayName: 'Get Config Pipeline'
-#  workingDirectory: terraform-module-test-pipeline
+  # workingDirectory: terraform-module-test-pipeline
 
 - script: terraform init
   displayName: 'Terraform Init'
-#  workingDirectory: terraform-module-test-pipeline
+  # workingDirectory: terraform-module-test-pipeline
   env:
     TF_LOG: TRACE
 
 - script: terraform apply -auto-approve
   displayName: 'Terrafrom Apply'
-#  workingDirectory: terraform-module-test-pipeline
+  # workingDirectory: terraform-module-test-pipeline
